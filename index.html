@@ -677,26 +677,6 @@
             margin-bottom: 15px;
         }
 
-        .carousel-caption .carousel-button {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(139, 92, 246, 0.3);
-            backdrop-filter: blur(5px);
-            border: 2px solid white;
-            border-radius: var(--border-radius-xl);
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            pointer-events: auto; /* El botón sí recibe clics */
-        }
-
-        .carousel-caption .carousel-button:hover {
-            background: #8B5CF6;
-            transform: translateY(-2px);
-        }
-
         /* NUEVOS ESTILOS PARA EL CARRUSEL MINIMALISTA */
         .carousel-nav-btn {
             position: absolute;
@@ -4727,7 +4707,7 @@
 </head>
 <body style="overflow: hidden; margin: 0px;">
     <!-- Fondo de partículas morado y negro -->
-    <canvas id="particlesCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: radial-gradient(circle at 30% 30%, #1a0b2e, #0a0a0a 80%);" width="1536" height="695"></canvas>
+    <canvas id="particlesCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; background: radial-gradient(circle at 30% 30%, #1a0b2e, #0a0a0a 80%);" width="767" height="695"></canvas>
 
     <!-- Image Modal con Carrusel (Integrado) -->
     <div class="image-modal-overlay" id="imageModal" data-gallery="[&quot;https://i.postimg.cc/PJLXL6vn/3_AZUL_MARINO.png&quot;]" data-current-index="0" data-product-id="1" data-color="Azul marino">
@@ -5559,7 +5539,7 @@
                     <i class="fas fa-plus-circle"></i>
                     Agregar Nuevo Producto
                 </h3>
-                <div class="status-message status-success" id="formMessage" style="display: flex;"><i class="fas fa-check-circle"></i><span>Datos importados correctamente. La página se recargará en 3 segundos...</span></div>
+                <div class="status-message status-success" id="formMessage" style="display: none;"><i class="fas fa-check-circle"></i><span>Datos exportados correctamente</span></div>
                 <form class="admin-form" id="productForm">
                     <div class="form-row">
                         <div class="form-group-admin">
@@ -5846,7 +5826,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     </h4>
                     
                     <div class="banner-type-selector" style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                        <div class="coupon-type-option" data-banner-type="hero" onclick="admin.seleccionarTipoBanner('hero')" style="background: rgb(139, 92, 246); color: white;">
+                        <div class="coupon-type-option selected" data-banner-type="hero" onclick="admin.seleccionarTipoBanner('hero')" style="background: rgb(139, 92, 246); color: white;">
                             <i class="fas fa-star"></i> Hero
                         </div>
                         <div class="coupon-type-option" data-banner-type="oferta" onclick="admin.seleccionarTipoBanner('oferta')">
@@ -5994,7 +5974,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     <span>Administra las imágenes del carrusel principal que aparece antes de los productos. Cada imagen puede enlazar a una categoría específica.</span>
                 </div>
                 
-                <div class="status-message status-success" id="carouselMessage" style="display: none;"><i class="fas fa-check-circle"></i><span>Imagen actualizada correctamente</span></div>
+                <div class="status-message status-success" id="carouselMessage" style="display: none;"><i class="fas fa-check-circle"></i><span>Imagen guardada correctamente</span></div>
                 
                 <div class="admin-form">
                     <h4 class="section-title-admin" style="margin-top: 0; margin-bottom: 15px;">
@@ -6092,9 +6072,56 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                 </div>
                 
                 <div class="banners-list-admin" id="carouselImagesList">
-                        <div class="status-message status-info">
-                            <i class="fas fa-info-circle"></i>
-                            <span>No hay imágenes en el carrusel. Agrega una desde el formulario.</span>
+                        <div class="banner-item-admin" style="border-left: 4px solid #2e8b57;" draggable="true">
+                            <div class="banner-header-admin">
+                                <div class="banner-title-admin">
+                                    <i class="fas fa-image"></i> Sin título
+                                    <span class="banner-badge-admin" style="background: var(--success);">Activo</span>
+                                </div>
+                                <div class="banner-actions-admin">
+                                    <button class="product-action-btn edit-btn-admin" onclick="admin.editarImagenCarrusel('carousel1772855757370')" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="product-action-btn delete-btn-admin" onclick="admin.eliminarImagenCarrusel('carousel1772855757370')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="banner-preview">
+                                <img src="https://i.postimg.cc/MpNk34TL/1.jpg" alt="Imagen" style="width: 60px; height: 40px; object-fit: cover; border-radius: var(--border-radius-sm);">
+                                <div class="banner-preview-info">
+                                    <div><strong>Sin descripción</strong></div>
+                                    <div><strong>Enlace:</strong> Categoría: TODO</div>
+                                    <div><strong>Orden:</strong> 1</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="banner-item-admin" style="border-left: 4px solid #2e8b57;" draggable="true">
+                            <div class="banner-header-admin">
+                                <div class="banner-title-admin">
+                                    <i class="fas fa-image"></i> Sin título
+                                    <span class="banner-badge-admin" style="background: var(--success);">Activo</span>
+                                </div>
+                                <div class="banner-actions-admin">
+                                    <button class="product-action-btn edit-btn-admin" onclick="admin.editarImagenCarrusel('carousel1772856880861')" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="product-action-btn delete-btn-admin" onclick="admin.eliminarImagenCarrusel('carousel1772856880861')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="banner-preview">
+                                <img src="https://i.postimg.cc/ZnHCzNDc/2.jpg" alt="Imagen" style="width: 60px; height: 40px; object-fit: cover; border-radius: var(--border-radius-sm);">
+                                <div class="banner-preview-info">
+                                    <div><strong>Sin descripción</strong></div>
+                                    <div><strong>Enlace:</strong> Categoría: TODO</div>
+                                    <div><strong>Orden:</strong> 2</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -6721,13 +6748,13 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                 <div class="coupons-list-admin" id="couponsListAdmin">
                         <div class="coupon-item-admin" style="">
                             <div class="coupon-header-admin">
-                                <span class="coupon-code-admin" style="background: #10b98120; color: #10b981;">
-                                    <i class="fas fa-truck"></i> 🚚 ENVÍO GRATIS
+                                <span class="coupon-code-admin" style="background: #8b5cf620; color: #8b5cf6;">
+                                    <i class="fas fa-dollar-sign"></i> $20 OFF
                                 </span>
                                 <div class="coupon-actions-admin">
                                     <span class="status-message status-success" style="display: inline-flex; margin: 0; padding: 2px 8px; font-size: 0.7rem;"><i class="fas fa-check-circle"></i> Disponible</span>
-                                    <span class="coupon-expiry-badge"><i class="fas fa-hourglass-half"></i> 3d</span>
-                                    <button class="product-action-btn delete-btn-admin" onclick="admin.eliminarCupon('cupon1772741790665')" style="width: 26px; height: 26px; margin-left: 5px;">
+                                    <span class="coupon-expiry-badge"><i class="fas fa-hourglass-half"></i> 7d</span>
+                                    <button class="product-action-btn delete-btn-admin" onclick="admin.eliminarCupon('cupon1773808638838')" style="width: 26px; height: 26px; margin-left: 5px;">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -6735,11 +6762,11 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                             <div class="coupon-details-admin">
                                 <div class="coupon-detail-item">
                                     <span class="coupon-detail-label">Descripción:</span>
-                                    <span class="coupon-detail-value">Cupón de descuento</span>
+                                    <span class="coupon-detail-value">Descuento en toda la tienda</span>
                                 </div>
                                 <div class="coupon-detail-item">
                                     <span class="coupon-detail-label">Tipo:</span>
-                                    <span class="coupon-detail-value">🚚 Envío gratis</span>
+                                    <span class="coupon-detail-value">$20 OFF</span>
                                 </div>
                                 <div class="coupon-detail-item">
                                     <span class="coupon-detail-label">Condición:</span>
@@ -6748,7 +6775,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                                 
                             <div class="coupon-detail-item">
                                 <span class="coupon-detail-label"><i class="fas fa-clock"></i> Expira:</span>
-                                <span class="coupon-detail-value">8/3/2026 11:59 p.m.</span>
+                                <span class="coupon-detail-value">24/3/2026 11:59 p.m.</span>
                             </div>
                         
                             </div>
@@ -6768,7 +6795,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     <span>Administra las redes sociales, configuración de envíos, información de contacto y otros ajustes generales de la tienda.</span>
                 </div>
                 
-                <div class="status-message status-success" id="generalMessage" style="display: none;"><i class="fas fa-check-circle"></i><span>Toda la configuración ha sido guardada</span></div>
+                <div class="status-message status-success" id="generalMessage" style="display: none;"><i class="fas fa-check-circle"></i><span>Información de contacto guardada</span></div>
                 
                 <!-- CONFIGURACIÓN DE ENVÍOS -->
                 <div class="delivery-editor-section">
@@ -7206,7 +7233,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                 <div class="hero-badges">
                     <div class="badge">
                         <i class="fas fa-shipping-fast"></i>
-                        Envío gratis <span id="shippingBadgeAmount">+$300</span>
+                        Envío gratis <span id="shippingBadgeAmount">+$200</span>
                     </div>
                     <div class="badge">
                         <i class="fas fa-shield-alt"></i>
@@ -7221,11 +7248,11 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
         </div>
     </section>
 
-    <!-- CARRUSEL PRINCIPAL - NUEVO DISEÑO -->
-    <section class="carousel-section" id="carouselSectionFront" style="display: none;">
+    <!-- CARRUSEL PRINCIPAL - NUEVO DISEÑO (BOTÓN "VER MÁS" ELIMINADO) -->
+    <section class="carousel-section" id="carouselSectionFront" style="display: block;">
         <div class="container" style="position: relative;">
             <div class="main-carousel" id="mainCarousel">
-                <div class="carousel-slides" id="carouselSlides"><div class="carousel-slide" style="background-image: url('https://i.postimg.cc/QtnW4QCb/1.jpg');"><div class="carousel-caption"><h3>Hombre</h3><p>Ropa para hombres para todos los estilos</p><span class="carousel-button" onclick="event.stopPropagation(); carrito.filterProducts('hombre')">Ver más</span></div></div><div class="carousel-slide active" style="background-image: url('https://i.postimg.cc/mD6FXYkm/8.jpg');"><div class="carousel-caption"><h3>Mujer</h3><p>Moda femenina para todos los estilos</p><span class="carousel-button" onclick="event.stopPropagation(); carrito.filterProducts('mujer')">Ver más</span></div></div><div class="carousel-slide" style="background-image: url('https://i.postimg.cc/mrSbCH7D/Mochilas_20260220_171827_0000.jpg');"><div class="carousel-caption"><h3>Accesorios</h3><p>Complementos para elevar tu look</p><span class="carousel-button" onclick="event.stopPropagation(); carrito.filterProducts('accesorios')">Ver más</span></div></div></div>
+                <div class="carousel-slides" id="carouselSlides"><div class="carousel-slide" style="background-image: url('https://i.postimg.cc/MpNk34TL/1.jpg');"><div class="carousel-caption"></div></div><div class="carousel-slide active" style="background-image: url('https://i.postimg.cc/ZnHCzNDc/2.jpg');"><div class="carousel-caption"></div></div></div>
                 
                 <!-- NUEVOS BOTONES EXTERIORES -->
                 <button class="carousel-nav-btn prev" id="carouselPrev">
@@ -7240,13 +7267,11 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     <span class="carousel-dot" onclick="admin.goToCarouselSlide(0)"></span>
                 
                     <span class="carousel-dot active" onclick="admin.goToCarouselSlide(1)"></span>
-                
-                    <span class="carousel-dot" onclick="admin.goToCarouselSlide(2)"></span>
                 </div>
 
                 <!-- NUEVA BARRA DE PROGRESO -->
                 <div class="carousel-progress-container">
-                    <div class="carousel-progress-bar" id="carouselProgressBar" style="width: 14%;"></div>
+                    <div class="carousel-progress-bar" id="carouselProgressBar" style="width: 93%;"></div>
                 </div>
             </div>
         </div>
@@ -10478,7 +10503,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     <select id="deliveryDay" class="form-select" style="display: none;" required=""></select>
                     
                     <div class="date-selector-container">
-                        <input type="date" id="deliveryDate" class="form-input" required="" min="2026-03-05">
+                        <input type="date" id="deliveryDate" class="form-input" required="" min="2026-03-17">
                         <div class="date-hint" style="color: var(--text-light);">
                             <i class="fas fa-info-circle"></i> 
                             Solo disponible de <strong>Lunes a Sábado</strong> (los domingos no hay entregas)
@@ -10650,7 +10675,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
     <!-- Botón del Carrito -->
     <div class="floating-btn cart-icon" id="cartIcon" style="bottom: 100px;">
         <i class="fas fa-shopping-bag"></i>
-        <div class="cart-count" id="cartCount">1</div>
+        <div class="cart-count" id="cartCount">0</div>
     </div>
 
     <div class="cart-overlay" id="cartOverlay"></div>
@@ -10673,24 +10698,24 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     Cupones disponibles
                 </div>
                 <div class="coupon-grid" id="couponGrid">
-                        <div class="coupon-item" data-coupon-id="cupon1772741790665" onclick="carrito.aplicarCupon('cupon1772741790665')" style="border-color: #10b981; background: linear-gradient(135deg, #10b98115, #10b98105);">
-                            <div class="coupon-icon" style="background: #10b981; color: white;">
-                                <i class="fas fa-truck"></i>
+                        <div class="coupon-item" data-coupon-id="cupon1773808638838" onclick="carrito.aplicarCupon('cupon1773808638838')" style="border-color: #8b5cf6; background: linear-gradient(135deg, #8b5cf615, #8b5cf605);">
+                            <div class="coupon-icon" style="background: #8b5cf6; color: white;">
+                                <i class="fas fa-dollar-sign"></i>
                             </div>
                             <div class="coupon-info">
-                                <div class="coupon-code" style="color: #10b981;">
-                                    🚚 ENVÍO GRATIS
+                                <div class="coupon-code" style="color: #8b5cf6;">
+                                    $20 OFF
                                 </div>
                                 <div class="coupon-description">
-                                    Cupón de descuento
+                                    Descuento en toda la tienda
                                 </div>
-                                <div class="coupon-timer"><i class="fas fa-hourglass-half"></i> <span class="timer-numbers">3d 9h 20m</span></div>
+                                <div class="coupon-timer"><i class="fas fa-hourglass-half"></i> <span class="timer-numbers">7d 1h 20m</span></div>
                             </div>
                         </div>
                     </div>
             </div>
             
-            <div class="free-shipping-promo show" id="freeShippingPromo" style="display: block;">
+            <div class="free-shipping-promo" id="freeShippingPromo" style="display: none;">
                 <i class="fas fa-shipping-fast"></i>
                 <div class="promo-text">¡Falta poco para envío gratis!</div>
                 <div class="promo-subtext">Agrega <span id="remainingAmount">$170.00</span> más a tu carrito</div>
@@ -10699,39 +10724,9 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                 </div>
             </div>
             
-            <div class="cart-items" id="cartItems">
-                        <div class="cart-item">
-                            <img src="https://i.postimg.cc/QtnW4QCb/1.jpg" alt="SUDADERA" class="cart-item-image" onclick="carrito.openImageModal('https://i.postimg.cc/QtnW4QCb/1.jpg', 'SUDADERA')">
-                            <div class="cart-item-details">
-                                <div class="cart-item-info">
-                                    <div class="cart-item-title">SUDADERA</div>
-                                    <div class="cart-item-variant">
-                                        <i class="fas fa-tag"></i>
-                                        Talla: S | Color: Azul rey
-                                    </div>
-                                    <div class="cart-item-price">$130</div>
-                                </div>
-                                
-                                <div class="cart-item-actions">
-                                    <div class="quantity-control">
-                                        <button class="quantity-btn" onclick="carrito.updateQuantity(0, -1)" disabled="">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <span class="quantity-value">1</span>
-                                        <button class="quantity-btn" onclick="carrito.updateQuantity(0, 1)">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <button class="remove-item" onclick="carrito.removeItem(0)">
-                                        <i class="fas fa-trash"></i>
-                                        Eliminar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="cart-items" id="cartItems"></div>
             
-            <div class="empty-cart" id="emptyCart" style="display: none;">
+            <div class="empty-cart" id="emptyCart" style="display: block;">
                 <i class="fas fa-shopping-bag"></i>
                 <h3>Tu carrito está vacío</h3>
                 <p>Agrega algunos productos para comenzar</p>
@@ -10741,7 +10736,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                 </a>
             </div>
             
-            <div class="cart-summary show" id="cartSummary" style="display: block;">
+            <div class="cart-summary" id="cartSummary" style="display: none;">
                 <div class="summary-title">
                     <i class="fas fa-receipt"></i>
                     Resumen del Pedido
@@ -10751,7 +10746,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                         <i class="fas fa-box"></i>
                         Subtotal
                     </span>
-                    <span class="summary-value" id="subtotal">$130.00</span>
+                    <span class="summary-value" id="subtotal">$0.00</span>
                 </div>
                 
                 <div id="appliedCouponRow" style="display: none;" class="summary-coupon-row">
@@ -10767,24 +10762,24 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                         <i class="fas fa-truck"></i>
                         Envío
                     </span>
-                    <span class="summary-value" id="shipping">$50.00</span>
+                    <span class="summary-value" id="shipping">$20.00</span>
                 </div>
                 <div class="summary-total">
                     <span class="total-label">
                         <i class="fas fa-calculator"></i>
                         Total
                     </span>
-                    <span class="total-amount" id="total">$180.00</span>
+                    <span class="total-amount" id="total">$20.00</span>
                 </div>
             </div>
         </div>
         
-        <div class="cart-actions" id="cartActions">
-            <button class="checkout-btn" id="checkoutBtn">
+        <div class="cart-actions disabled" id="cartActions">
+            <button class="checkout-btn" id="checkoutBtn" disabled="">
                 <i class="fab fa-whatsapp"></i>
                 Finalizar Compra
             </button>
-            <button class="clear-cart-btn" id="clearCartBtn">
+            <button class="clear-cart-btn" id="clearCartBtn" disabled="">
                 <i class="fas fa-trash"></i>
                 Vaciar Carrito
             </button>
@@ -11102,17 +11097,17 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
         
         let deliveryConfig = {"points":[{"id":"xhala","name":"San Sebastián Xhala","address":"San Sebastián, enfrente de la universidad","map":"https://maps.app.goo.gl/nKi4gyiDY1KikZPQ6"},{"id":"socorro","name":"El Socorro","address":"Colonia El Socorro, en los Arcos en frente del oxxo","map":"https://maps.app.goo.gl/BYYZWmaa9TbtjWvD8"},{"id":"mateo","name":"San Mateo","address":"San Mateo, en frente de la iglesia","map":"https://maps.app.goo.gl/q1KoquLtgrTEnuCo6"}],"times":[{"id":"time1771356290191","value":"11:30","label":"11:30 AM"},{"id":"time1771356300623","value":"19:30","label":"7:30 PM"}],"transfer":{"nombre":"Saul Flores","banco":"STP","clabe":"721180100001101243"}};
 
-        let cuponesDisponibles = [{"id":"cupon1772741790665","codigo":"🚚 ENVÍO GRATIS","descripcion":"Cupón de descuento","tipo":"envio","valor":0,"minimo":0,"color":"#10b981","usado":false,"expirado":false,"fechaExpiracion":"2026-03-08T23:59:00","icono":"fa-truck"}];
+        let cuponesDisponibles = [{"id":"cupon1773808638838","codigo":"$20 OFF","descripcion":"Descuento en toda la tienda","tipo":"fijo","valor":20,"minimo":0,"color":"#8b5cf6","usado":false,"expirado":false,"fechaExpiracion":"2026-03-24T23:59:00","icono":"fa-dollar-sign"}];
         let cuponesUsados = ["cupon1771391296288","cupon1771391284156","cupon1771607993717","cupon1771607991071","cupon1771607988171","cupon1771607984559","cupon1771688064843","cupon1771688072907","cupon1771784636834","cupon1771878474485","cupon1771878472026"];
         let cuponesExpirados = ["cupon1770918868389"];
         let bannersDisponibles = [];
 
         // ==================== NUEVA VARIABLE PARA CARRUSEL DE IMÁGENES ====================
-        let imagenesCarrusel = [];
+        let imagenesCarrusel = [{"id":"carousel1772855757370","url":"https://i.postimg.cc/MpNk34TL/1.jpg","titulo":null,"descripcion":null,"action":"carrito.filterProducts(\"todo\")","linkType":"category","linkValue":"todo","orden":1,"activo":true},{"id":"carousel1772856880861","url":"https://i.postimg.cc/ZnHCzNDc/2.jpg","titulo":null,"descripcion":null,"action":"carrito.filterProducts(\"todo\")","linkType":"category","linkValue":"todo","orden":2,"activo":true}];
 
         // ==================== NUEVA CONFIGURACIÓN GENERAL ====================
         // ACTUALIZADO: El número de WhatsApp principal ahora es 5616927361
-        let generalConfig = {"shipping":{"freeMinimum":300,"cost":50,"estimatedTime":"24-48 horas"},"contact":{"phone":"(55) 1234-5678","whatsapp":"5616927361","email":"info@modastyle.com","address":"Ciudad de México","hours":"Lunes a Viernes 9:00 - 18:00"},"socialMedia":[{"id":"fb1","name":"facebook","url":"https://facebook.com/","icon":"fa-facebook","color":"#1877f2","active":true},{"id":"ig1","name":"instagram","url":"https://instagram.com/","icon":"fa-instagram","color":"#e4405f","active":true}],"store":{"name":"ModaStyle","slogan":"Tienda de Ropa, Accesorios y Hogar","currency":"MXN","language":"es","maintenance":false,"trackingNotifications":true}};
+        let generalConfig = {"shipping":{"freeMinimum":200,"cost":20,"estimatedTime":"24-48 horas"},"contact":{"phone":"(55) 1234-5678","whatsapp":"5616927361","email":"info@modastyle.com","address":"Ciudad de México","hours":"Lunes a Viernes 9:00 - 18:00"},"socialMedia":[{"id":"fb1","name":"facebook","url":"https://facebook.com/","icon":"fa-facebook","color":"#1877f2","active":true},{"id":"ig1","name":"instagram","url":"https://instagram.com/","icon":"fa-instagram","color":"#e4405f","active":true}],"store":{"name":"ModaStyle","slogan":"Tienda de Ropa, Accesorios y Hogar","currency":"MXN","language":"es","maintenance":false,"trackingNotifications":true}};
 
         // ==================== SISTEMA DE CONFIRMACIÓN MODAL ====================
         class ConfirmModal {
@@ -15100,12 +15095,11 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
 
                 document.getElementById('carouselSectionFront').style.display = 'block';
 
-                // Render slides
+                // Render slides SIN botón "Ver más"
                 slidesContainer.innerHTML = imagenesActivas.map((img, index) => {
-                    // Construir el HTML de la diapositiva
                     let slideHTML = `<div class="carousel-slide ${index === 0 ? 'active' : ''}" style="background-image: url('${img.url}');">`;
                     
-                    // Agregar la superposición con el botón
+                    // Agregar la superposición vacía (solo para mantener el diseño)
                     slideHTML += `<div class="carousel-caption">`;
                     
                     if (img.titulo) {
@@ -15116,8 +15110,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                         slideHTML += `<p>${img.descripcion}</p>`;
                     }
                     
-                    // Botón "Ver más" con su propio evento que NO se propaga
-                    slideHTML += `<span class="carousel-button" onclick="event.stopPropagation(); ${img.action}">Ver más</span>`;
+                    // El botón ha sido eliminado
                     
                     slideHTML += `</div></div>`;
                     
@@ -15129,12 +15122,9 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
                     const slides = document.querySelectorAll('.carousel-slide');
                     slides.forEach((slide, index) => {
                         slide.onclick = (e) => {
-                            // Solo ejecutar si el clic NO fue en el botón
-                            if (!e.target.classList.contains('carousel-button') && !e.target.closest('.carousel-button')) {
-                                const img = imagenesActivas[index];
-                                if (img && img.action) {
-                                    eval(img.action);
-                                }
+                            const img = imagenesActivas[index];
+                            if (img && img.action) {
+                                eval(img.action);
                             }
                         };
                     });
@@ -15152,7 +15142,7 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
             startCarouselAutoplay(progressBar) {
                 if (this.carouselInterval) clearInterval(this.carouselInterval);
                 
-                const intervalTime = 5000; // 5 segundos
+                const intervalTime = 10000; // 10 segundos
                 const updateInterval = 50; // Actualizar cada 50ms para una animación suave
                 let timeElapsed = 0;
                 
@@ -18339,6 +18329,8 @@ Dejar vacío si no hay imágenes por variante" style="height: 78px;"></textarea>
         console.log('✅ Configuración de envíos, contacto, redes sociales y carrusel incluida');
         console.log('✅ SOLUCIÓN: Carrito se vacía automáticamente después de realizar el pedido');
         console.log('✅ Número principal actualizado a 5616927361');
+        console.log('✅ MODIFICACIÓN: Botón "Ver más" eliminado del carrusel principal');
     </script>
+
 
 </body></html>
